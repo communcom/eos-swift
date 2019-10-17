@@ -12,4 +12,12 @@ public struct PushTransaction : Encodable {
         self.packed_context_free_data = packed_context_free_data
         self.packed_trx = packed_trx
     }
+    
+    func convertToJSON() -> String {
+        let jsonData = try! JSONEncoder().encode(self)
+        let jsonString = String(data: jsonData, encoding: .utf8)!
+        
+        return jsonString
+    }
+
 }

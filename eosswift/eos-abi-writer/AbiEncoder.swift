@@ -38,7 +38,24 @@ extension AbiEncoder {
             case is Bool:
                 try abiEncodingContainer.encode(child.value as! Bool)
             case is String:
-                try abiEncodingContainer.encode(child.value as! String)
+                if type(of: child.value) == String?.self {
+                    if let value = child.value as? String {
+                        if mirror.description.contains("UserProfileAccountmetaArgs") {
+                            if value.count > 0 || value.isEmpty {
+                                try abiEncodingContainer.encode(UInt8(1))
+                                try abiEncodingContainer.encode(value)
+                            }
+                        }
+
+                        else if value.count > 0 {
+                            try abiEncodingContainer.encode(1)
+                            try abiEncodingContainer.encode(value.count)
+                            try abiEncodingContainer.encode(value)
+                        }
+                    }
+                } else {
+                    try abiEncodingContainer.encode(child.value as! String)
+                }
             case is Double:
                 try abiEncodingContainer.encode(child.value as! Double)
             case is Float:
@@ -60,7 +77,17 @@ extension AbiEncoder {
             case is UInt32:
                 try abiEncodingContainer.encode(child.value as! UInt32)
             case is UInt64:
-                try abiEncodingContainer.encode(child.value as! UInt64)
+                if child.label! == "ref_block_num" {
+                    try abiEncodingContainer.encode(child.value as! UInt64, asDefault: false)
+                }
+
+                else if child.label! == "parent_recid" {
+                    try abiEncodingContainer.encode(child.value as! UInt64, asDefault: false)
+                }
+
+                else {
+                    try abiEncodingContainer.encode(child.value as! UInt64, asDefault: true)
+                }
             case is NameWriter:
                 try abiEncodingContainer.encode(child.value as! NameWriter)
             case is AccountNameWriter:
@@ -87,12 +114,16 @@ extension AbiEncoder {
                 try abiEncodingContainer.encode(child.value as! AccountNameCollectionWriter)
             case is [Encodable]:
                 let encodableValues = child.value as! [Encodable]
-                try self.abiEncodingContainer.encode(UInt64.init(encodableValues.count))
+                try self.abiEncodingContainer.encode(UInt64.init(encodableValues.count), asDefault: true)
                 for encodable in encodableValues {
                     try self.encode(encodable: encodable)
                 }
             case is Encodable:
-                try self.encode(encodable: child.value as! Encodable)
+                if type(of: child.value) == String?.self {
+                    try abiEncodingContainer.encode(mirror.description.contains("UserProfileAccountmetaArgs") ? UInt8(0) : 0)
+                } else {
+                    try self.encode(encodable: child.value as! Encodable)
+                }
             default:
                 fatalError("type not supported")
             }

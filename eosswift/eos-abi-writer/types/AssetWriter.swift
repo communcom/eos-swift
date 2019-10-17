@@ -25,7 +25,7 @@ public class AssetWriterValue : AssetWriter, Encodable {
             if (symbol != "") {
                 try writeSymbol(precision: afterDotVal.count, symbol: symbol, writer: writer)
             } else {
-                try writer.encode(UInt64.init(0))
+                try writer.encode(UInt64.init(0), asDefault: true)
             }
         } else {
             throw InvalidAssetFormatError.asset("Invalid asset format")

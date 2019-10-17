@@ -3,8 +3,8 @@ import BigInt
 
 public class BlockIdDetails {
 
-    let blockNum: Int
-    let blockPrefix: Int64
+    public let blockNum: Int
+    public let blockPrefix: Int64
 
     public init(blockId: String) {
         let hexWriter: HexWriter = DefaultHexWriter()

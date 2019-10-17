@@ -12,7 +12,7 @@ public class AccountNameCollectionWriterValue : AccountNameCollectionWriter, Enc
     }
 
     func encode(writer: AbiEncodingContainer) throws {
-        try writer.encode(UInt64.init(value.count))
+        try writer.encode(UInt64.init(value.count), asDefault: true)
 
         if (value.count > 0) {
             try value.forEach {

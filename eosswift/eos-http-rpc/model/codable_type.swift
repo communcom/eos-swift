@@ -4,6 +4,7 @@ extension Encodable {
     public func toHex() -> String {
         let abiEncoder = AbiEncoder(capacity: 512)
         try! abiEncoder.encode(encodable: self)
+        print(abiEncoder.toData().hexEncodedString())
         return abiEncoder.toData().hexEncodedString()
     }
 

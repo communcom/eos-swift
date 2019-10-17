@@ -8,7 +8,7 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
     private var index: Int = 0
 
     func toData() -> Data {
-        return Data(bytes: buffer[0..<index])
+        return Data(buffer[0..<index])
     }
 
     private func ensureCapacity(_ capacity: Int) {
@@ -33,7 +33,7 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
 
     func encode(_ value: String) throws {
         let bytes = [UInt8](value.utf8)
-        try encode(UInt64.init(bytes.count))
+        try encode(UInt64.init(bytes.count), asDefault: true)
         try encodeBytes(value: bytes)
     }
 
@@ -119,17 +119,17 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
         try encodeUnsignedInteger(value)
     }
 
-    func encode(_ value: UInt64) throws {
-        try encodeUnsignedInteger(value)
+    func encode(_ value: UInt64, asDefault: Bool) throws {
+        try asDefault ? encodeUnsignedInteger(value) : encodeBytes(value: value.bytes)
     }
 
     private func encodeUnsignedInteger<T : UnsignedInteger> (_ value: T) throws {
         var copy: T = value
         repeat {
-        var b: UInt8 = UInt8.init(copy & 0x7f)
-        copy = copy >> 7
-        b = UInt8.init(Int.init(b) | ((copy > 0) ? 1 : 0) << 7)
-        try encode(b)
+            var b: UInt8 = UInt8.init(copy & 0x7f)
+            copy = copy >> 7
+            b = UInt8.init(Int.init(b) | ((copy > 0) ? 1 : 0) << 7)
+            try encode(b)
         } while (copy != 0)
     }
 
@@ -201,5 +201,13 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
 
     func superEncoder() -> Encoder {
         fatalError()
+    }
+}
+
+
+
+extension UInt64 {
+    var bytes: [UInt8] {
+        return [UInt8(truncatingIfNeeded: self), UInt8(truncatingIfNeeded: self >> 8), UInt8(truncatingIfNeeded: self >> 16), UInt8(truncatingIfNeeded: self >> 24), UInt8(truncatingIfNeeded: self >> 32), UInt8(truncatingIfNeeded: self >> 40), UInt8(truncatingIfNeeded: self >> 48), UInt8(truncatingIfNeeded: self >> 56)]
     }
 }
