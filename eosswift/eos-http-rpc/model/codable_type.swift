@@ -8,9 +8,9 @@ extension Encodable {
         return abiEncoder.toData().hexEncodedString()
     }
 
-    public func toData() -> Data {
+    public func toData() throws -> Data {
         let abiEncoder = AbiEncoder(capacity: 512)
-        try! abiEncoder.encode(encodable: self)
+        try abiEncoder.encode(encodable: self)
         return abiEncoder.toData()
     }
 }

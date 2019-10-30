@@ -24,7 +24,7 @@ public extension ChainTransaction {
                                                                 transaction:        transactionAbi,
                                                                 context_free_data:  HexCollectionWriterValue(value: []))
 
-                let signature = PrivateKeySigning().sign(digest:                    signedTransactionAbi.toData(),
+                let signature = PrivateKeySigning().sign(digest:                    try signedTransactionAbi.toData(),
                                                          eosPrivateKey:             authorizingPrivateKey)
 
                 // JSON
