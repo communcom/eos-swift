@@ -226,6 +226,7 @@
 		3CEA5FE8220E358B0069E716 /* TimestampWriterTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEA5FE7220E358B0069E716 /* TimestampWriterTest.swift */; };
 		3D07B6E4316429C03642301E /* Pods_eosswift_eosswiftTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0D0ED85A4C240BB0149AE93 /* Pods_eosswift_eosswiftTests.framework */; };
 		A319CB2584D79C91989BED11 /* Pods_eosswift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBDC98C293614C9CE6F2831D /* Pods_eosswift.framework */; };
+		AC499D9C2382E0E200691C2D /* CyberSymbolWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC499D9B2382E0E200691C2D /* CyberSymbolWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -467,6 +468,7 @@
 		3CEA5FE5220E34790069E716 /* PublicKeyWriterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicKeyWriterTest.swift; sourceTree = "<group>"; };
 		3CEA5FE7220E358B0069E716 /* TimestampWriterTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimestampWriterTest.swift; sourceTree = "<group>"; };
 		4932DCA7DC0BD5480001864E /* Pods_eos_swift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eos_swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC499D9B2382E0E200691C2D /* CyberSymbolWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CyberSymbolWriter.swift; sourceTree = "<group>"; };
 		BBDC98C293614C9CE6F2831D /* Pods_eosswift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eosswift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0D0ED85A4C240BB0149AE93 /* Pods_eosswift_eosswiftTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_eosswift_eosswiftTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -637,6 +639,7 @@
 				3C027F5F21907C0E00D22DF0 /* BlockNumWriter.swift */,
 				3C027F6021907C0E00D22DF0 /* BlockPrefixWriter.swift */,
 				3C027F6121907C0E00D22DF0 /* ChainIdWriter.swift */,
+				AC499D9B2382E0E200691C2D /* CyberSymbolWriter.swift */,
 			);
 			path = types;
 			sourceTree = "<group>";
@@ -1444,32 +1447,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-eosswift-eosswiftTests/Pods-eosswift-eosswiftTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
-				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
-				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
-				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
-				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-eosswift-eosswiftTests/Pods-eosswift-eosswiftTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-eosswift-eosswiftTests/Pods-eosswift-eosswiftTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-eosswift-eosswiftTests/Pods-eosswift-eosswiftTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-eosswift-eosswiftTests/Pods-eosswift-eosswiftTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		AB21B494D799CC7B5D093DC9 /* [CP] Check Pods Manifest.lock */ = {
@@ -1527,6 +1513,7 @@
 				3C02802821907C0E00D22DF0 /* Transaction.swift in Sources */,
 				3C02807021907C0E00D22DF0 /* TransactionAbi.swift in Sources */,
 				3C9BFBA9219B593C00589936 /* RefundRequest.swift in Sources */,
+				AC499D9C2382E0E200691C2D /* CyberSymbolWriter.swift in Sources */,
 				3C02804B21907C0E00D22DF0 /* HistoricTransaction.swift in Sources */,
 				3C02800B21907C0E00D22DF0 /* HexCollectionWriter.swift in Sources */,
 				3C02806121907C0E00D22DF0 /* BlockHeaderProducer.swift in Sources */,

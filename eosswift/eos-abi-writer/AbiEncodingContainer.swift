@@ -137,6 +137,10 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
         try value.encode(writer: self)
     }
 
+    func encode(_ value: CyberSymbolWriter) throws {
+        try value.encode(writer: self)
+    }
+
     func encode(_ value: AccountNameWriter) throws {
         try value.encode(writer: self)
     }

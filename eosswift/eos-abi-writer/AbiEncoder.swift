@@ -90,6 +90,8 @@ extension AbiEncoder {
                 }
             case is NameWriter:
                 try abiEncodingContainer.encode(child.value as! NameWriter)
+            case is CyberSymbolWriter:
+                try abiEncodingContainer.encode(child.value as! CyberSymbolWriter)
             case is AccountNameWriter:
                 try abiEncodingContainer.encode(child.value as! AccountNameWriter)
             case is BlockNumWriter:
