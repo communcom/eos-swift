@@ -7,7 +7,6 @@ public struct TransactionAbi : Encodable {
     public let ref_block_prefix: BlockPrefixWriterValue
     public let max_net_usage_words: UInt32
     public let max_cpu_usage_ms: UInt8
-    public let hotfix: UInt8 = 0 //FIXME !!!
     // New `transaction_header`: https://github.com/GolosChain/cyberway.contracts/blob/master/cyber.msig/abi/cyber.msig.abi#L244-L281
     public let max_ram_kbytes: UInt32
     public let max_storage_kbytes: UInt32

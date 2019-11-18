@@ -22,10 +22,14 @@ public class CyberSymbolWriterValue : CyberSymbolWriter, Encodable {
     }
 
     func encode(writer: AbiEncodingContainer) throws {
-        let buf: [UInt8] = Array(name.utf8)
-        let bytes = [UInt8](Data(bytes: buf, count: 8))
-        print(buf)
-        print(bytes)
-        try writer.encodeBytes(value: bytes)
+        var buf: [UInt8] = Array(name.utf8)
+
+        if buf.count < NAME_MAX_LENGTH {
+            for _ in buf.count...NAME_MAX_LENGTH - 1 {
+                buf.append(0)
+            }
+        }
+
+        try writer.encodeBytes(value: buf)
     }
 }
