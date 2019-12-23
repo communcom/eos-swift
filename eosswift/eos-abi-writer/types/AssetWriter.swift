@@ -5,7 +5,7 @@ protocol AssetWriter : AbiTypeWriter {
 
 public class AssetWriterValue : AssetWriter, Encodable {
 
-    private let asset: String
+    let asset: String
 
     public init(asset: String) {
         self.asset = asset

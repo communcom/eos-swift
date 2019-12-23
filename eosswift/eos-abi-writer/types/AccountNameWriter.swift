@@ -8,7 +8,7 @@ public class AccountNameWriterValue : AccountNameWriter, Encodable {
     private let MAX_LENGTH = 12
     private let ILLEGAL_CHARACTER = "."
 
-    private let name: String
+    let name: String
 
     public init(name: String) {
         self.name = name
