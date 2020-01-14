@@ -22,7 +22,19 @@ public class CyberSymbolWriterValue : CyberSymbolWriter, Encodable {
     }
 
     func encode(writer: AbiEncodingContainer) throws {
-        var buf: [UInt8] = Array(name.utf8)
+        var newName = name
+        var insertValue: UInt8?
+
+        if name.contains(",") && name.count > 2 {
+            newName = String(newName.dropFirst(2))
+            insertValue = UInt8(String(name.prefix(1)))
+        }
+
+        var buf: [UInt8] = Array(newName.utf8)
+
+        if let val = insertValue {
+            buf.insert(val, at: 0)
+        }
 
         if buf.count < NAME_MAX_LENGTH {
             for _ in buf.count...NAME_MAX_LENGTH - 1 {
