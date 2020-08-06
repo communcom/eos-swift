@@ -123,6 +123,10 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
         try asDefault ? encodeUnsignedInteger(value) : encodeBytes(value: value.bytes)
     }
 
+    func encode(_ value: UInt64) throws {
+        try encodeUnsignedInteger(value)
+    }
+
     private func encodeUnsignedInteger<T : UnsignedInteger> (_ value: T) throws {
         var copy: T = value
         repeat {
@@ -182,6 +186,10 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
     }
 
     func encode(_ value: AccountNameCollectionWriter) throws {
+        try value.encode(writer: self)
+    }
+
+    func encode(_ value: EOSPublicKey) throws {
         try value.encode(writer: self)
     }
 
