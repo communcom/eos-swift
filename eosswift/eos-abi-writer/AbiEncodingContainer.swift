@@ -189,10 +189,6 @@ class AbiEncodingContainer : UnkeyedEncodingContainer {
         try value.encode(writer: self)
     }
 
-    func encode(_ value: EOSPublicKey) throws {
-        try value.encode(writer: self)
-    }
-
     func encode<T>(_ value: T) throws where T : Encodable {
         fatalError("Generic encoding not supported")
     }
