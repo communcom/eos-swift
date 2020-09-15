@@ -47,6 +47,13 @@ extension AbiEncoder {
                             }
                         }
 
+                        if mirror.description.contains("SetInfo") {
+                            if value.count > 0 || value.isEmpty {
+                                try abiEncodingContainer.encode(UInt8(1))
+                                try abiEncodingContainer.encode(value)
+                            }
+                        }
+
                         else if value.count > 0 {
                             try abiEncodingContainer.encode(1)
                             try abiEncodingContainer.encode(value.count)
@@ -123,6 +130,7 @@ extension AbiEncoder {
             case is Encodable:
                 if type(of: child.value) == String?.self {
                     try abiEncodingContainer.encode(mirror.description.contains("UserProfileAccountmetaArgs") ? UInt8(0) : 0)
+                    try abiEncodingContainer.encode(mirror.description.contains("SetInfo") ? UInt8(0) : 0)
                 } else {
                     try self.encode(encodable: child.value as! Encodable)
                 }
