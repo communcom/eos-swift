@@ -7,7 +7,7 @@ public class NameWriterValue : NameWriter, Encodable {
 
     private let NAME_MAX_LENGTH = 12
 
-    private let name: String
+    public let name: String
 
     public init(name: String) {
         self.name = name
