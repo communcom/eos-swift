@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name                   = 'eosswift'
-  spec.version                = '1.5.8'
+  spec.version                = '1.5.9'
   spec.ios.deployment_target  = '11.0'
   spec.swift_version          = '4.2'
   spec.license                = { :type => 'APACHE-2.0' }
